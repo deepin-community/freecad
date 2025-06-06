@@ -1,0 +1,39 @@
+Description: Use packaged json3 library.
+Author: Tobias Frost <tobi@debian.org>
+Last-Update: 2024-12-23
+
+--- a/src/Mod/PartDesign/App/CMakeLists.txt
++++ b/src/Mod/PartDesign/App/CMakeLists.txt
+@@ -1,3 +1,6 @@
++
++find_package(nlohmann_json REQUIRED)
++
+ include_directories(
+     ${CMAKE_BINARY_DIR}
+     ${CMAKE_SOURCE_DIR}/src
+@@ -10,7 +13,7 @@
+     ${PYTHON_INCLUDE_DIRS}
+     ${XercesC_INCLUDE_DIRS}
+     ${QT_INCLUDE_DIR}
+-    ${CMAKE_SOURCE_DIR}/src/3rdParty/json/single_include/nlohmann/
++    /usr/include/nlohmann/
+ )
+ link_directories(${OCC_LIBRARY_DIR})
+ 
+--- a/src/Mod/PartDesign/Gui/CMakeLists.txt
++++ b/src/Mod/PartDesign/Gui/CMakeLists.txt
+@@ -1,3 +1,5 @@
++find_package(nlohmann_json REQUIRED)
++
+ include_directories(
+     ${CMAKE_BINARY_DIR}
+     ${CMAKE_SOURCE_DIR}/src
+@@ -9,7 +11,7 @@
+     ${PYTHON_INCLUDE_DIRS}
+     ${XercesC_INCLUDE_DIRS}
+     ${EIGEN3_INCLUDE_DIR}
+-    ${CMAKE_SOURCE_DIR}/src/3rdParty/json/single_include/nlohmann/
++    /usr/include/nlohmann/
+ )
+ link_directories(${OCC_LIBRARY_DIR})
+ 

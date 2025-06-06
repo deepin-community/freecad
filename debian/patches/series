@@ -1,0 +1,12 @@
+1100-run_single-instance.patch
+2000-do_not_install_binary_examples.patch
+2010-exclude_ply.patch
+2020-fix-cmake-extra-license.patch
+2040-ftbfs-macappbundle.patch
+2060-fix-linking.patch
+2070-use-nlohmann-json3-dev.patch
+1080-fix-FTBFS-due-dfsg-repacking-p1.patch
+1081-fix-FTBFS-due-dfsg-repacking-p2.patch
+1090-freecad-spelling-allow-one.patch
+1091-freecad-spelling-others.patch
+1110-GL_MULTISAMPLE.patch

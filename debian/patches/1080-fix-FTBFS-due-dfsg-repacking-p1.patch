@@ -1,0 +1,37 @@
+Description: Fix FTBFS due to dfsg repacking
+ - when the kuka files are gone, the Mod/Robot CMakeLists.txt will complain 
+ (note, this patch needs refactoring to be upstreamable.)
+Bug: https://github.com/FreeCAD/FreeCAD/pull/18708
+Author: Tobias Frost <tobi@debian.org>
+Forwarded: https://github.com/FreeCAD/FreeCAD/pull/18708
+Last-Update: 2024-12-21
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/Mod/Robot/CMakeLists.txt
++++ b/src/Mod/Robot/CMakeLists.txt
+@@ -44,10 +44,12 @@
+     ${CMAKE_BINARY_DIR}/Mod/Robot
+     ${Robot_Scripts})
+ 
++if (DEFINED Robot_Resources)
+ fc_target_copy_resource(RobotScripts
+     ${CMAKE_CURRENT_SOURCE_DIR}
+     ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_DATADIR}/Mod/Robot
+     ${Robot_Resources})
++endif()
+ 
+ INSTALL(
+     FILES
+@@ -56,6 +58,7 @@
+         Mod/Robot
+ )
+ 
++if (DEFINED Robot_Resources)
+ INSTALL(
+     DIRECTORY
+         Lib
+@@ -65,3 +68,4 @@
+     PATTERN "*.pdf" EXCLUDE
+     PATTERN "testprog.*" EXCLUDE
+ )
++endif()

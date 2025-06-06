@@ -1,0 +1,23 @@
+Description: Fix FTBFS due to dfsg repacking
+ - when Y14.5-2018.ttf (TechDraw Workbench.) is deleted, CMake will complain.
+ note: upstream is clarifing font license, see https://github.com/FreeCAD/FreeCAD/issues/18622
+Author: Tobias Frost <tobi@debian.org>
+Forwarded: not suitable in this form top be upstreamed.
+Last-Update: 2024-12-21
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/Mod/TechDraw/Gui/CMakeLists.txt
++++ b/src/Mod/TechDraw/Gui/CMakeLists.txt
+@@ -463,9 +463,9 @@
+     Resources/fonts/osifont-lgpl3fe.ttf
+     Resources/fonts/osifont-italic.ttf
+     Resources/fonts/osifont.license
+-    Resources/fonts/Y14.5-2018.ttf
+-    Resources/fonts/Y14.5Font.license
+-    Resources/fonts/Y14.5-FreeCAD.ttf
++#    Resources/fonts/Y14.5-2018.ttf
++#    Resources/fonts/Y14.5Font.license
++#    Resources/fonts/Y14.5-FreeCAD.ttf
+ )
+ 
+ if(FREECAD_USE_PCH)
