@@ -1,0 +1,32 @@
+Description: Fix FTBFS due to wrong link order, ensure GMock and GTest be found
+Author: Tobias Frost <tobi@debian.org>
+Forwarded: not-needed, (possibly Debian specific)
+Last-Update: 2024-12-21
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -2,7 +2,8 @@
+     include_directories( ${CMAKE_SOURCE_DIR}/tests/lib/googletest/include/ )
+     include_directories( ${CMAKE_SOURCE_DIR}/tests/lib/googlemock/include/ )
+ else()
+-    find_package(GTest)
++    find_package(GTest REQUIRED)
++    find_package(GMock REQUIRED)
+     if( GTest_FOUND )
+         message( STATUS "Found Google Test: version ${GTest_VERSION}" )
+     else()
+@@ -134,10 +135,11 @@
+     ${XercesC_INCLUDE_DIRS}
+ )
+ target_link_libraries(Tests_run
+-    gtest_main
+-    gmock_main
+     ${Google_Tests_LIBS}
+     FreeCADApp
++    gtest
++    gmock
++    gtest_main
+ )
+ 
+ include(GoogleTest)
